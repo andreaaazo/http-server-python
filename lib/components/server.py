@@ -1,10 +1,12 @@
 from http.server import HTTPServer
-from .request_handler import Handler
+
+from .request_handler import HTTPRequestHandler
+
 from settings import *
 
 
 class Server(HTTPServer):
     def __init__(self):
         server_address = (HOSTNAME, PORT)
-        RequestHandlerClass = Handler
+        RequestHandlerClass = HTTPRequestHandler
         super().__init__(server_address, RequestHandlerClass)
