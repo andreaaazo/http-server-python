@@ -1,5 +1,4 @@
 import cgi
-from this import d
 from lib.func.database import retrieve_marks_from_tests
 from settings import *
 from .template_engine import *

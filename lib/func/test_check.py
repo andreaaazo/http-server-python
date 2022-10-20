@@ -4,7 +4,6 @@ from .retrieve_form_data import retrieve_fields
 def correct_results(handler: object, values_list: list, answers: dict):
     correct_responses = 0
     responses_dict = retrieve_fields(handler, values_list)
-    print(responses_dict)
     for i in responses_dict:
         if responses_dict[i] == answers[i]:
             correct_responses += 1
