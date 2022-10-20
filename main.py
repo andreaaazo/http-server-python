@@ -1,4 +1,4 @@
-from server.server import Server
+from server.http_server import Server
 from settings import HOSTNAME, PORT
 
 if __name__ == "__main__":
