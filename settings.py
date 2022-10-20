@@ -11,4 +11,7 @@ URLPATTERNS = {
     "/dashboard": "dashboard.html",
     "/errore": "errore.html",
     "/credenziali_errate": "credenziali_errate.html",
+    "/test1": "test1.html",
+    "/test2": "test2.html",
+    "/test3": "test3.html",
 }

@@ -4,16 +4,18 @@ from settings import *
 
 from lib.func.template_engine import render_template, render_dashboard
 from lib.func.retrieve_form_data import retrieve_fields
-from lib.func.database import register, check_if_user_exists
+from lib.func.database import register, check_if_user_exists, add_test_result
 from lib.func.cookies import (
     check_if_user_is_already_logged,
     render_dashboard_with_user_cookies,
+    retrieve_current_user,
 )
 from lib.func.requests import (
     send_response_302,
     send_response_200,
     send_response_302_with_user_cookie,
 )
+from lib.func.test_check import correct_results, calculate_mark
 
 
 class HTTPRequestHandler(BaseHTTPRequestHandler):
@@ -29,12 +31,110 @@ class HTTPRequestHandler(BaseHTTPRequestHandler):
             self.authentication()
         elif self.path == "/registrazione":
             self.register()
+        elif self.path == "/test1":
+            self.update_results(
+                [
+                    "1",
+                    "2",
+                    "3",
+                    "4",
+                    "5",
+                    "6",
+                    "7",
+                    "8",
+                ],
+                {
+                    "1": "2",
+                    "2": "2",
+                    "3": "1",
+                    "4": "0",
+                    "5": "0",
+                    "6": "0",
+                    "7": "0",
+                    "8": "2",
+                },
+                8,
+                1,
+            )
+        elif self.path == "/test2":
+            self.update_results(
+                [
+                    "1",
+                    "2",
+                    "3",
+                    "4",
+                    "5",
+                    "6",
+                    "7",
+                    "8",
+                ],
+                {
+                    "1": "2",
+                    "2": "2",
+                    "3": "1",
+                    "4": "0",
+                    "5": "0",
+                    "6": "0",
+                    "7": "0",
+                    "8": "2",
+                },
+                8,
+                2,
+            )
+        elif self.path == "/test3":
+            self.update_results(
+                [
+                    "1",
+                    "2",
+                    "3",
+                    "4",
+                    "5",
+                    "6",
+                    "7",
+                    "8",
+                ],
+                {
+                    "1": "2",
+                    "2": "2",
+                    "3": "1",
+                    "4": "0",
+                    "5": "0",
+                    "6": "0",
+                    "7": "0",
+                    "8": "2",
+                },
+                8,
+                3,
+            )
+        elif self.path == "/dashboard":
+            send_response_302_with_user_cookie(
+                self,
+                "/",
+                "=deleted; path=/; expires=Thu, 01 Jan 1970 00:00:00 GMT",
+            )
 
     def page_requested_status(self):
         if self.path in URLPATTERNS:
             return 200
         else:
             return 404
+
+    def update_results(
+        self,
+        values_list: list,
+        answers: list,
+        number_of_questions: int,
+        test_number: int,
+    ):
+        correct_responses_number = correct_results(
+            self,
+            values_list,
+            answers,
+        )
+        mark = calculate_mark(correct_responses_number, number_of_questions)
+        current_user = retrieve_current_user(self)
+        add_test_result(mark, current_user, test_number)
+        send_response_302(self, "/dashboard")
 
     def register(self):
         def get_fields():
