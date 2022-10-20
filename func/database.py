@@ -1,11 +1,11 @@
 def register(utente, password):
-    engine = open("lib/components/database.txt", "a")
+    engine = open("database/database.txt", "a")
     engine.write(f"{utente},{password}|")
     engine.close()
 
 
 def check_if_user_exists(utente_dato, password_data):
-    engine = open("lib/components/database.txt", "r")
+    engine = open("database/database.txt", "r")
     database = engine.read()
     engine.close()
     utenti = database.split("|")
@@ -18,7 +18,7 @@ def check_if_user_exists(utente_dato, password_data):
 
 
 def add_test_result(mark: int, user: str, test_number: int):
-    engine = open(f"lib/components/{test_number}_test_results.txt", "r")
+    engine = open(f"database/{test_number}_test_results.txt", "r")
     database = engine.read()
     engine.close()
     utenti = database.split("|")
@@ -40,15 +40,15 @@ def add_test_result(mark: int, user: str, test_number: int):
     if not found:
         utenti_aggiornata = str(utenti_aggiornata) + f"{user},{mark}|"
 
-    engine = open(f"lib/components/{test_number}_test_results.txt", "w")
+    engine = open(f"database/{test_number}_test_results.txt", "w")
     engine.write(str(utenti_aggiornata))
     engine.close()
 
 
 def retrieve_marks_from_tests(user: str):
-    engine1 = open("lib/components/1_test_results.txt", "r")
-    engine2 = open("lib/components/2_test_results.txt", "r")
-    engine3 = open("lib/components/3_test_results.txt", "r")
+    engine1 = open("database/1_test_results.txt", "r")
+    engine2 = open("database/2_test_results.txt", "r")
+    engine3 = open("database/3_test_results.txt", "r")
 
     database1 = engine1.read()
     database2 = engine2.read()

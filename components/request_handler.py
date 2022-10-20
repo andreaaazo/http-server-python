@@ -2,20 +2,20 @@ from http.server import BaseHTTPRequestHandler
 
 from settings import *
 
-from lib.func.template_engine import render_template, render_dashboard
-from lib.func.retrieve_form_data import retrieve_fields
-from lib.func.database import register, check_if_user_exists, add_test_result
-from lib.func.cookies import (
+from func.template_engine import render_template, render_dashboard
+from func.retrieve_form_data import retrieve_fields
+from func.database import register, check_if_user_exists, add_test_result
+from func.cookies import (
     check_if_user_is_already_logged,
     render_dashboard_with_user_cookies,
     retrieve_current_user,
 )
-from lib.func.requests import (
+from func.requests import (
     send_response_302,
     send_response_200,
     send_response_302_with_user_cookie,
 )
-from lib.func.test_check import correct_results, calculate_mark
+from func.test_check import correct_results, calculate_mark
 
 
 class HTTPRequestHandler(BaseHTTPRequestHandler):
