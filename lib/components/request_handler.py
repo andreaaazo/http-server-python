@@ -2,10 +2,18 @@ from http.server import BaseHTTPRequestHandler
 
 from settings import *
 
-from lib.functions.template_engine import render_template, render_dashboard
-from lib.functions.retrieve_form_data import retrieve_fields
-from lib.functions.database import register, check_if_user_exists
-from lib.functions.cookies import check_for_cookies_render_dashboard
+from lib.func.template_engine import render_template, render_dashboard
+from lib.func.retrieve_form_data import retrieve_fields
+from lib.func.database import register, check_if_user_exists
+from lib.func.cookies import (
+    check_if_user_is_already_logged,
+    render_dashboard_with_user_cookies,
+)
+from lib.func.requests import (
+    send_response_302,
+    send_response_200,
+    send_response_302_with_user_cookie,
+)
 
 
 class HTTPRequestHandler(BaseHTTPRequestHandler):
@@ -14,11 +22,7 @@ class HTTPRequestHandler(BaseHTTPRequestHandler):
         if status == 404:
             self.send_response(404)
         elif status == 200:
-            self.render_template()
-            self.send_response(200)
-            self.send_header("Content-type", "text/html")
-            self.end_headers()
-            self.wfile.write(bytes(str(self.render_template()), "utf-8"))
+            self.send_requested_page()
 
     def do_POST(self):
         if self.path == "/accesso":
@@ -38,10 +42,7 @@ class HTTPRequestHandler(BaseHTTPRequestHandler):
             return d_fields["nuovo_utente"], d_fields["password"]
 
         def redirect(utente):
-            self.send_response(302)
-            self.send_header("Set-Cookie", f"{utente}")
-            self.send_header("Location", "/dashboard")
-            self.end_headers()
+            send_response_302_with_user_cookie(self, "/dashboard", utente)
 
         nuovo_utente, password = get_fields()
         register(nuovo_utente, password)
@@ -52,23 +53,36 @@ class HTTPRequestHandler(BaseHTTPRequestHandler):
             d_fields = retrieve_fields(self, ["utente", "password"])
             return d_fields["utente"], d_fields["password"]
 
-        def redirect(check):
-            self.send_response(302)
+        def redirect(check, utente):
             if not check:
-                self.send_header("Location", "/credenziali_errate")
+                page = render_template(URLPATTERNS["/credenziali_errate"])
+                send_response_200(self, page)
             else:
-                self.send_header("Location", "/dashboard")
-            self.end_headers()
+                send_response_302_with_user_cookie(self, "/dashboard", utente)
 
         utente_dato, password_data = fields()
         check = check_if_user_exists(utente_dato, password_data)
-        redirect(check)
+        redirect(check, utente_dato)
 
-    def render_template(self):
+    def send_requested_page(self):
         if self.path == "/dashboard":
-            return check_for_cookies_render_dashboard(self, "/errore")
+            check = check_if_user_is_already_logged(self)
+
+            if check:
+                template_page = render_dashboard_with_user_cookies(self)
+                send_response_200(self, template_page)
+            else:
+                send_response_302(self, "/errore")
 
         elif self.path == "/accesso" or self.path == "/registrazione":
-            return check_for_cookies_render_dashboard(self, self.path)
+            check = check_if_user_is_already_logged(self)
+
+            if check:
+                send_response_302(self, "/dashboard")
+            else:
+                rendered_page = render_template(URLPATTERNS[self.path])
+                send_response_200(self, rendered_page)
+
         else:
-            return render_template(URLPATTERNS[self.path])
+            template_page = render_template(URLPATTERNS[self.path])
+            send_response_200(self, template_page)

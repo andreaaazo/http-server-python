@@ -10,8 +10,7 @@ def check_if_user_exists(utente_dato, password_data):
     utenti = database.split("|")
 
     for utente in utenti:
-        utente_presente = utente.split(",")[0]
-        password_presente = utente.split(",")[1]
-        if utente_presente == utente_dato and password_presente == password_data:
+        credenziali = utente.split(",")
+        if credenziali[0] == utente_dato and credenziali[1] == password_data:
             return True
     return False
