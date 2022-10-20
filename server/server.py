@@ -1,6 +1,6 @@
 from http.server import HTTPServer
 
-from .request_handler import HTTPRequestHandler
+from .http_request_handler import HTTPRequestHandler
 
 from settings import *
 

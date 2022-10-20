@@ -1,4 +1,4 @@
-from lib.components.server import Server
+from server.server import Server
 from settings import HOSTNAME, PORT
 
 if __name__ == "__main__":
