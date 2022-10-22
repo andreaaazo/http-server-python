@@ -82,3 +82,74 @@ def retrieve_marks_from_tests(user: str):
             mark3 = credentials[1]
 
     return mark1, mark2, mark3
+
+
+def insert_number_of_correct_responses(
+    database_number: str, user: str, correct_answers: int
+):
+    engine = open(f"database/{database_number}_correct_answers.txt", "r")
+    database = engine.read()
+    engine.close()
+    utenti = database.split("|")
+    del utenti[-1]
+
+    utenti_aggiornata = ""
+    found = False
+
+    for utente in utenti:
+        credenziali = utente.split(",")
+        if credenziali[0] == user:
+            utenti_aggiornata = (
+                str(utenti_aggiornata) + f"{credenziali[0]},{correct_answers}|"
+            )
+            found = True
+        else:
+            utenti_aggiornata = (
+                str(utenti_aggiornata) + f"{credenziali[0]}, {credenziali[1]}|"
+            )
+
+    if not found:
+        utenti_aggiornata = str(utenti_aggiornata) + f"{user},{correct_answers}|"
+
+    engine = open(f"database/{database_number}_correct_answers.txt", "w")
+    engine.write(str(utenti_aggiornata))
+    engine.close()
+
+
+def retrieve_correct_answers(user: str):
+    engine1 = open("database/1_correct_answers.txt", "r")
+    engine2 = open("database/2_correct_answers.txt", "r")
+    engine3 = open("database/3_correct_answers.txt", "r")
+
+    database1 = engine1.read()
+    database2 = engine2.read()
+    database3 = engine3.read()
+
+    engine1.close()
+    engine2.close()
+    engine3.close()
+
+    test1_answers = database1.split("|")
+    test2_answers = database2.split("|")
+    test3_answers = database3.split("|")
+
+    answer1 = 0
+    answer2 = 0
+    answer3 = 0
+
+    for test in test1_answers:
+        credentials = test.split(",")
+        if credentials[0] == user:
+            answer1 = credentials[1]
+
+    for test in test2_answers:
+        credentials = test.split(",")
+        if credentials[0] == user:
+            answer2 = credentials[1]
+
+    for test in test3_answers:
+        credentials = test.split(",")
+        if credentials[0] == user:
+            answer3 = credentials[1]
+
+    return answer1, answer2, answer3

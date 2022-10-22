@@ -4,7 +4,12 @@ from settings import *
 
 from .func.template_engine import render_template
 from .func.retrieve_form_data import retrieve_fields
-from .func.database import register, check_if_user_exists, add_test_result
+from .func.database import (
+    register,
+    check_if_user_exists,
+    add_test_result,
+    insert_number_of_correct_responses,
+)
 from .func.cookies import (
     check_if_user_is_already_logged,
     render_dashboard_with_user_cookies,
@@ -134,6 +139,9 @@ class HTTPRequestHandler(BaseHTTPRequestHandler):
         mark = calculate_mark(correct_responses_number, number_of_questions)
         current_user = retrieve_current_user(self)
         add_test_result(mark, current_user, test_number)
+        insert_number_of_correct_responses(
+            test_number, current_user, correct_responses_number
+        )
         send_response_302(self, "/dashboard")
 
     def register(self):
