@@ -4,7 +4,6 @@
 [![Stargazers][stars-shield]][stars-url]
 [![Issues][issues-shield]][issues-url]
 [![MIT License][license-shield]][license-url]
-[![YouTube Channel Subscribers][Youtube.com]][YouTube-url]
 
 
 
@@ -24,6 +23,7 @@
     ·
     <a href="https://github.com/andreaaazo/http-server-python/issues">Request Feature</a>
   </p>
+    [![YouTube Channel Subscribers][Youtube.com]][YouTube-url]
 </div>
 
 
