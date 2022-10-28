@@ -131,11 +131,8 @@ class HTTPRequestHandler(BaseHTTPRequestHandler):
         number_of_questions: int,
         test_number: int,
     ):
-        correct_responses_number = correct_results(
-            self,
-            values_list,
-            answers,
-        )
+        responses_dict = retrieve_fields(self, values_list)
+        correct_responses_number = correct_results(answers, responses_dict)
         mark = calculate_mark(correct_responses_number, number_of_questions)
         current_user = retrieve_current_user(self)
         add_test_result(mark, current_user, test_number)
