@@ -24,8 +24,6 @@
   </p>
 </div>
 
-[![YouTube Channel Subscribers][Youtube.com]][YouTube-url]
-
 <!-- TABLE OF CONTENTS -->
 <details>
   <summary>Table of Contents</summary>
