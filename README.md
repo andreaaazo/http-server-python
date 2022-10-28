@@ -102,7 +102,7 @@ Start from here, and set up your local project correctly.
   
 ### Installation
 
-_Install correctly the project._
+Install correctly the project.
 
 1. Clone the repo
    ```sh
