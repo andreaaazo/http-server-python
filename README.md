@@ -23,8 +23,8 @@
     ·
     <a href="https://github.com/andreaaazo/http-server-python/issues">Request Feature</a>
   </p>
-    [![YouTube Channel Subscribers][Youtube.com]][YouTube-url]
 </div>
+[![YouTube Channel Subscribers][Youtube.com]][YouTube-url]
 
 
 
