@@ -56,7 +56,7 @@
 
 
 <!-- ABOUT THE PROJECT -->
-## About The Project
+## ❔ About The Project
 
 The simplicity of this project makes it **perfect for beginners**, and for those who want to learn the basics of an HTTP server.
 
@@ -81,7 +81,7 @@ _Start with this server, and build yours more faster!_.
 
 
 <!-- GETTING STARTED -->
-## Getting Started
+## 📥 Getting Started
 
 Start from here, and set up your local project correctly.
 
@@ -123,7 +123,7 @@ _Install correctly the project._
 
 
 <!-- USAGE EXAMPLES -->
-## Usage
+## 🔨 Usage
 
 This is a **Python Request Handler and Server**.  
 
@@ -141,7 +141,7 @@ To facilitate the proper execution of the code I took the liberty of adding a vi
 
 
 <!-- ROADMAP -->
-## Roadmap
+## 📍 Roadmap
 
 - [x] Finish Project
 - [ ] Refine code 
@@ -154,7 +154,7 @@ See the [open issues](https://github.com/andreaaazo/http-server-python/issues) f
 
 
 <!-- CONTRIBUTING -->
-## Contributing
+## 🤝 Contributing
 
 Contributions are what make the open source community such an amazing place to learn, inspire, and create. Any contributions you make are **greatly appreciated**.
 
@@ -172,7 +172,7 @@ Don't forget to give the project a star! Thanks again!
 
 
 <!-- LICENSE -->
-## License
+## 📝 License
 
 Distributed under the MIT License. See [`LICENSE.txt`](https://github.com/andreaaazo/http-server-python/blob/main/LICENSE) for more information.
 
@@ -192,7 +192,7 @@ Project Link: [https://github.com/andreaaazo/http-server-python](https://github.
 
 
 <!-- ACKNOWLEDGMENTS -->
-## :eyes: Acknowledgments
+## 📑 Acknowledgments
 
 A list of some useful Python libraries:
 
