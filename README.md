@@ -1,98 +1,238 @@
-<h1 align="center">Compito di informatica</h1>
-<p align="center">Andrea Zorzi 4M</p>
-
-## Introduzione
-Buongiorno professore,
-in questo file può trovare il mio compito di informatica. Mi sono permesso di espandere il progetto, introducendo un gestore di richieste, ed un server HTTP base.  
-
-<br>
-
-Inizialmente il sito web si presenta con una pagina introduttiva, dove potrà scegliere di registrarsi oppure di accedere ad un profilo già registrato.  
-Una volta eseguito correttamente l'accesso, il server la reinderizzerà in una pagina utente, dove verranno mostrati i 3 test che potrà eseguire. In basso può trovare il voto assegnato al test e il numero di domande a cui ha risposto in modo corretto.
-
-<br>
-
-Il server funziona tramite dei cookies, che permettono di mantenere la sessione attiva. Per cui anche se aprirà una nuova finestra sul browser e vorrà accedere al proprio account, il server farà l'accesso in maniera automatica, senza dover reinserire le credenziali in maniera totalmente reattiva.
-
-<br>
-
-Per facilitare la buona esecuzione del codice mi sono permesso di aggiungere un ambiente python virtuale. 
-
-<br>
-
-Il mio codice è online al seguente link: [GitHub](https://github.com/andreaaazo/http-server-python) ed a breve posterò un timelapse della creazione del codice su [YouTube](https://www.youtube.com/channel/UCAMPX_yvXMXMidga9hTYyAQ).
-
-## Struttura del codice
-Il codice si presenta in questo modo:
-```
-.
-├── LICENSE
-├── Pipfile
-├── Pipfile.lock
-├── README.md
-├── database
-│   ├── 1_correct_answers.txt
-│   ├── 1_test_results.txt
-│   ├── 2_correct_answers.txt
-│   ├── 2_test_results.txt
-│   ├── 3_correct_answers.txt
-│   ├── 3_test_results.txt
-│   └── database.txt
-├── main.py
-├── server
-│   ├── func
-│   │   ├── __init__.py
-│   │   ├── cookies.py
-│   │   ├── database.py
-│   │   ├── requests.py
-│   │   ├── retrieve_form_data.py
-│   │   ├── template_engine.py
-│   │   └── test_check.py
-│   ├── http_request_handler.py
-│   └── http_server.py
-├── settings.py
-└── templates
-    ├── accesso.html
-    ├── credenziali_errate.html
-    ├── dashboard.html
-    ├── errore.html
-    ├── home.html
-    ├── registrazione.html
-    ├── test1.html
-    ├── test2.html
-    └── test3.html
-
-4 directories, 31 files
-```
-
-I 2 file più importanti sono: `main.py` e `settings.py`.  
-
-All'interno del file `settings.py`, può trovare alcune impostazioni (create da me) per facilitare la gestione del server.  
-Invece `main.py` è il codice principale per far eseguire il server.
-
-<br>
-
-La cartella `templates` contiene i file HTML utilizzati dal server.  
-
-<br>
-
-La cartella `server` contiene i componenti principali riguardanti il server: un gestore di richieste ed il server vero e proprio.  
-Mentre nella sottocartella `func` può trovare tutte le funzioni utilizate dal server e dal gestore.  
-
-<br>
-
-La cartella `database`contiene tutte le "tabelle" o file .txt per il salvataggio permanente dei dati.
-
-<br>
-
-Gli altri files sono soltanto per i comandi `git` e `pip` e ho allegato un file .txt contenente una licenza MIT (per GitHub).
+<!-- PROJECT SHIELDS -->
+[![Contributors][contributors-shield]][contributors-url]
+[![Forks][forks-shield]][forks-url]
+[![Stargazers][stars-shield]][stars-url]
+[![Issues][issues-shield]][issues-url]
+[![MIT License][license-shield]][license-url]
 
 
 
-## Come eseguire il codice
-1. Aprire il terminale
-2. **Andare** con il terminale **nella cartella principale**: `cd http-server-python`
-3. **Attivare l'ambiente virtuale python** creato da me: `pipenv shell`
-4. **Digitare nel terminale**: `python main.py`
-5. Con un browser a sua scelta **andare al seguente link**: `http://localhost:8000`
+<!-- PROJECT LOGO -->
+<br />
+<div align="center">
+  <a href="https://i.ytimg.com/vi/hFNZ6kdBgO0/maxresdefault.jpg">
+    <img src="images/logo.png" alt="Logo" width="80" height="80">
+  </a>
 
+  <h3 align="center">HTTP Server Python</h3>
+
+  <p align="center">
+    A basic Python server so you don’t start from scratch
+    <br />
+    <br />
+    <a href="https://github.com/andreaaazo/http-server-python">View Demo</a>
+    ·
+    <a href="https://github.com/andreaaazo/http-server-python/issues">Report Bug</a>
+    ·
+    <a href="https://github.com/andreaaazo/http-server-python/issues">Request Feature</a>
+  </p>
+</div>
+
+
+
+<!-- TABLE OF CONTENTS -->
+<details>
+  <summary>Table of Contents</summary>
+  <ol>
+    <li>
+      <a href="#about-the-project">About The Project</a>
+      <ul>
+        <li><a href="#built-with">Built With</a></li>
+      </ul>
+    </li>
+    <li>
+      <a href="#getting-started">Getting Started</a>
+      <ul>
+        <li><a href="#prerequisites">Prerequisites</a></li>
+        <li><a href="#installation">Installation</a></li>
+      </ul>
+    </li>
+    <li><a href="#usage">Usage</a></li>
+    <li><a href="#roadmap">Roadmap</a></li>
+    <li><a href="#contributing">Contributing</a></li>
+    <li><a href="#license">License</a></li>
+    <li><a href="#contact">Contact</a></li>
+    <li><a href="#acknowledgments">Acknowledgments</a></li>
+  </ol>
+</details>
+
+
+
+<!-- ABOUT THE PROJECT -->
+## About The Project
+
+The simplicity of this project makes it **perfect for beginners**, and for those who want to learn the basics of an HTTP server.
+
+This is a **basic HTTP Server with a HTTP Request Handler**, and some **features**:
+- Cookies
+- Retrieve CGI Forms 
+- User authentication
+- Custom Database
+- Build-in home, authentication, registration and 404 error HTML pages (with Bootstrap)
+
+_Start with this server, and build yours more faster!_. 
+
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+
+
+
+### Built With
+[![Bootstrap][Bootstrap.com]][Bootstrap-url]
+
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+
+
+
+<!-- GETTING STARTED -->
+## Getting Started
+
+Start from here, and set up your local project correctly.
+
+
+### Prerequisites
+
+* pipenv
+  ```zsh
+  python install pipenv
+  ```
+  
+* git  
+
+    _with Homebrew package_
+    ```zsh
+    brew install git
+    ```
+  
+### Installation
+
+_Install correctly the project._
+
+1. Clone the repo
+   ```sh
+   git clone https://github.com/andreaaazo/http-server-python.git
+   ```
+3. Open a terminal in the main folder, and start the env
+   ```zsh
+   pipenv shell
+   ```
+   
+4. Start the server
+   ```zsh
+   python main.py
+   ```
+
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+
+
+
+<!-- USAGE EXAMPLES -->
+## Usage
+
+This is a **Python Request Handler and Server**.  
+
+Initially, the website is presented with an introductory page, where you can choose to register or access a profile already registered.
+Once you have successfully logged in, the server will redirect you to a user page, where will be shown 3 tests that you can take. Below you can find the grade assigned to the test and the number of questions answered correctly.
+
+
+The server works through cookies, which allow you to keep the session active. So even if you open a new window on your browser and want to access your account, the server will log in automatically, without having to re-enter your credentials in a totally reactive way.
+
+
+To facilitate the proper execution of the code I took the liberty of adding a virtual python environment.
+
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+
+
+
+<!-- ROADMAP -->
+## Roadmap
+
+- [x] Finish Project
+- [ ] Refine code 
+- [ ] Modify cookies auth to avoid cookies injections
+
+See the [open issues](https://github.com/andreaaazo/http-server-python/issues) for a full list of proposed features (and known issues).
+
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+
+
+
+<!-- CONTRIBUTING -->
+## Contributing
+
+Contributions are what make the open source community such an amazing place to learn, inspire, and create. Any contributions you make are **greatly appreciated**.
+
+If you have a suggestion that would make this better, please fork the repo and create a pull request. You can also simply open an issue with the tag "enhancement".
+Don't forget to give the project a star! Thanks again!
+
+1. Fork the Project
+2. Create your Feature Branch (`git checkout -b feature/AmazingFeature`)
+3. Commit your Changes (`git commit -m 'Add some AmazingFeature'`)
+4. Push to the Branch (`git push origin feature/AmazingFeature`)
+5. Open a Pull Request
+
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+
+
+
+<!-- LICENSE -->
+## License
+
+Distributed under the MIT License. See [`LICENSE.txt`](https://github.com/andreaaazo/http-server-python/blob/main/LICENSE) for more information.
+
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+
+
+
+<!-- CONTACT -->
+## Contact
+
+Andrea Zorzi - [@andreaaa.zo](https://twitter.com/your_username) - zorzi.andrea@outlook.com
+
+Project Link: [https://github.com/andreaaazo/http-server-python](https://github.com/andreaaazo/http-server-python)
+
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+
+
+
+<!-- ACKNOWLEDGMENTS -->
+## :eyes: Acknowledgments
+
+A list of some useful Python libraries:
+
+* [HTTP](https://docs.python.org/3/library/http.server.html#)
+
+I suggest you to try to replicate this project from scratch, and add your custom features.
+
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+
+
+
+<!-- MARKDOWN LINKS & IMAGES -->
+<!-- https://www.markdownguide.org/basic-syntax/#reference-style-links -->
+[contributors-shield]: https://img.shields.io/github/contributors/andreaaazo/http-server-python.svg?style=for-the-badge
+[contributors-url]: https://github.com/andreaaazo/http-server-python/graphs/contributors
+[forks-shield]: https://img.shields.io/github/forks/andreaaazo/http-server-python.svg?style=for-the-badge
+[forks-url]: https://github.com/andreaaazo/http-server-python/network/members
+[stars-shield]: https://img.shields.io/github/stars/andreaaazo/http-server-python.svg?style=for-the-badge
+[stars-url]: https://github.com/andreaaazo/http-server-python/stargazers
+[issues-shield]: https://img.shields.io/github/issues/andreaaazo/http-server-python.svg?style=for-the-badge
+[issues-url]: https://github.com/andreaaazo/http-server-python/issues
+[license-shield]: https://img.shields.io/github/license/andreaaazo/http-server-python.svg?style=for-the-badge
+[license-url]: https://github.com/andreaaazo/http-server-python/blob/master/LICENSE.txt
+[product-screenshot]: images/screenshot.png
+[Next.js]: https://img.shields.io/badge/next.js-000000?style=for-the-badge&logo=nextdotjs&logoColor=white
+[Next-url]: https://nextjs.org/
+[React.js]: https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB
+[React-url]: https://reactjs.org/
+[Vue.js]: https://img.shields.io/badge/Vue.js-35495E?style=for-the-badge&logo=vuedotjs&logoColor=4FC08D
+[Vue-url]: https://vuejs.org/
+[Angular.io]: https://img.shields.io/badge/Angular-DD0031?style=for-the-badge&logo=angular&logoColor=white
+[Angular-url]: https://angular.io/
+[Svelte.dev]: https://img.shields.io/badge/Svelte-4A4A55?style=for-the-badge&logo=svelte&logoColor=FF3E00
+[Svelte-url]: https://svelte.dev/
+[Laravel.com]: https://img.shields.io/badge/Laravel-FF2D20?style=for-the-badge&logo=laravel&logoColor=white
+[Laravel-url]: https://laravel.com
+[Bootstrap.com]: https://img.shields.io/badge/Bootstrap-563D7C?style=for-the-badge&logo=bootstrap&logoColor=white
+[Bootstrap-url]: https://getbootstrap.com
+[JQuery.com]: https://img.shields.io/badge/jQuery-0769AD?style=for-the-badge&logo=jquery&logoColor=white
+[JQuery-url]: https://jquery.com 
