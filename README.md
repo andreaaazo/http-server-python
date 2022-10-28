@@ -4,7 +4,7 @@
 [![Stargazers][stars-shield]][stars-url]
 [![Issues][issues-shield]][issues-url]
 [![MIT License][license-shield]][license-url]
-[![YouTube Channel Subscribers][https://img.shields.io/youtube/channel/subscribers/UCAMPX_yvXMXMidga9hTYyAQ?style=social]][https://www.youtube.com/channel/UCAMPX_yvXMXMidga9hTYyAQ]
+[![YouTube Channel Subscribers][Youtube.com]][YouTube-url]
 
 
 
@@ -234,3 +234,5 @@ I suggest you to try to replicate this project from scratch, and add your custom
 [Bootstrap-url]: https://getbootstrap.com
 [JQuery.com]: https://img.shields.io/badge/jQuery-0769AD?style=for-the-badge&logo=jquery&logoColor=white
 [JQuery-url]: https://jquery.com 
+[YouTube.com]: https://img.shields.io/youtube/channel/subscribers/UCAMPX_yvXMXMidga9hTYyAQ?style=social
+[YouTube-url]: https://www.youtube.com/channel/UCAMPX_yvXMXMidga9hTYyAQ
