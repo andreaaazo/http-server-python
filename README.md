@@ -90,7 +90,7 @@ Start from here, and set up your local project correctly.
 
 * pipenv
   ```zsh
-  python install pipenv
+  pip install --user pipenv
   ```
   
 * git  
