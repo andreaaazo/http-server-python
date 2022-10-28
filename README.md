@@ -181,7 +181,7 @@ Distributed under the MIT License. See [`LICENSE.txt`](https://github.com/andrea
 
 
 <!-- CONTACT -->
-## Contact
+## 📞 Contact
 
 Andrea Zorzi - [@andreaaa.zo](https://twitter.com/your_username) - zorzi.andrea@outlook.com
 
